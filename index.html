@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CIH Website</title>
+<title>CIH Website - Multi Page</title>
 <style>
   body {
     margin: 0;
@@ -17,6 +17,8 @@
     background-color: #121212;
     color: #ffffff;
   }
+
+  /* Dark/light mode button */
   #modeToggle {
     position: fixed;
     top: 20px;
@@ -33,22 +35,97 @@
   #modeToggle:hover {
     background-color: #777777;
   }
+
+  /* Page container */
+  .page {
+    display: none;
+    padding: 20px;
+    min-height: 80vh;
+  }
+  .page.active {
+    display: block;
+  }
+
+  /* Bottom navigation */
+  #nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #222;
+    display: flex;
+    justify-content: space-around;
+  }
+  #nav button {
+    padding: 10px;
+    flex: 1;
+    cursor: pointer;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    transition: background-color 0.3s;
+  }
+  #nav button:hover {
+    background-color: #555;
+  }
 </style>
 </head>
 <body>
 
-<h1>Welcome to CIH!</h1>
-<p>This is my first GitHub Pages website.</p>
-
+<!-- Dark/Light Mode Button -->
 <button id="modeToggle">Dark Mode</button>
 
+<!-- Pages -->
+<div id="page1" class="page active">
+  <h1>Page 1</h1>
+  <p>Welcome to page 1!</p>
+</div>
+
+<div id="page2" class="page">
+  <h1>Page 2</h1>
+  <p>This is page 2.</p>
+</div>
+
+<div id="page3" class="page">
+  <h1>Page 3</h1>
+  <p>This is page 3.</p>
+</div>
+
+<div id="page4" class="page">
+  <h1>Page 4</h1>
+  <p>This is page 4.</p>
+</div>
+
+<div id="page5" class="page">
+  <h1>Page 5</h1>
+  <p>This is page 5.</p>
+</div>
+
+<!-- Bottom Navigation -->
+<div id="nav">
+  <button onclick="showPage(1)">Page 1</button>
+  <button onclick="showPage(2)">Page 2</button>
+  <button onclick="showPage(3)">Page 3</button>
+  <button onclick="showPage(4)">Page 4</button>
+  <button onclick="showPage(5)">Page 5</button>
+</div>
+
 <script>
-  const button = document.getElementById('modeToggle');
   const body = document.body;
+  const button = document.getElementById('modeToggle');
+
+  // Dark/Light mode toggle
   button.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     button.textContent = body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
   });
+
+  // Page switching
+  function showPage(num) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach((p, i) => {
+      p.classList.toggle('active', i === num - 1);
+    });
+  }
 </script>
 
 </body>
