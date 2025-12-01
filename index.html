@@ -61,12 +61,103 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: none;
+    border: 2px solid transparent;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
     font-size: 16px;
+    background-color: transparent;
   }
 
-  /* Light mode button colors */
-  body:
+  /* Light mode colors */
+  body:not(.dark-mode) #nav button {
+    color: #000000;
+    border-color: #000000;
+  }
+  body:not(.dark-mode) #nav button.active {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  /* Dark mode colors */
+  body.dark-mode #nav button {
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  body.dark-mode #nav button.active {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  #nav button:hover {
+    opacity: 0.8;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Dark/Light Mode Button -->
+<button id="modeToggle">Dark Mode</button>
+
+<!-- Pages -->
+<div id="page1" class="page active">
+  <h1>Page 1</h1>
+  <p>Welcome to page 1!</p>
+</div>
+
+<div id="page2" class="page">
+  <h1>Page 2</h1>
+  <p>This is page 2.</p>
+</div>
+
+<div id="page3" class="page">
+  <h1>Page 3</h1>
+  <p>This is page 3.</p>
+</div>
+
+<div id="page4" class="page">
+  <h1>Page 4</h1>
+  <p>This is page 4.</p>
+</div>
+
+<div id="page5" class="page">
+  <h1>Page 5</h1>
+  <p>This is page 5.</p>
+</div>
+
+<!-- Bottom Navigation -->
+<div id="nav">
+  <button onclick="showPage(1)" class="active">1</button>
+  <button onclick="showPage(2)">2</button>
+  <button onclick="showPage(3)">3</button>
+  <button onclick="showPage(4)">4</button>
+  <button onclick="showPage(5)">5</button>
+</div>
+
+<script>
+  const body = document.body;
+  const modeButton = document.getElementById('modeToggle');
+  const navButtons = document.querySelectorAll('#nav button');
+
+  // Dark/Light mode toggle
+  modeButton.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    modeButton.textContent = body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+  });
+
+  // Page switching
+  function showPage(num) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach((p, i) => {
+      p.classList.toggle('active', i === num - 1);
+    });
+
+    navButtons.forEach((btn, i) => {
+      btn.classList.toggle('active', i === num - 1);
+    });
+  }
+</script>
+
+</body>
+</html>
