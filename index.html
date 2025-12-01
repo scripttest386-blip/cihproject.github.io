@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dark/Light Mode Toggle</title>
+<title>CIH Website</title>
 <style>
-  /* Default light mode */
   body {
     margin: 0;
     padding: 0;
@@ -14,14 +13,10 @@
     font-family: Arial, sans-serif;
     transition: background-color 0.3s, color 0.3s;
   }
-
-  /* Dark mode styles */
   body.dark-mode {
     background-color: #121212;
     color: #ffffff;
   }
-
-  /* Button styling */
   #modeToggle {
     position: fixed;
     top: 20px;
@@ -35,7 +30,6 @@
     color: #ffffff;
     transition: background-color 0.3s;
   }
-
   #modeToggle:hover {
     background-color: #777777;
   }
@@ -43,23 +37,17 @@
 </head>
 <body>
 
-<h1>Welcome to My Website</h1>
-<p>Click the button to toggle dark/light mode.</p>
+<h1>Welcome to CIH!</h1>
+<p>This is my first GitHub Pages website.</p>
 
 <button id="modeToggle">Dark Mode</button>
 
 <script>
   const button = document.getElementById('modeToggle');
   const body = document.body;
-
   button.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-
-    if (body.classList.contains('dark-mode')) {
-      button.textContent = 'Light Mode';
-    } else {
-      button.textContent = 'Dark Mode';
-    }
+    button.textContent = body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
   });
 </script>
 
