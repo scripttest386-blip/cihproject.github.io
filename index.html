@@ -13,10 +13,34 @@
     background-color: #ffffff;
     color: #000000;
     transition: background-color 0.5s, color 0.5s;
+    position: relative;
+    overflow-x: hidden;
   }
   body.dark-mode {
     background-color: #121212;
     color: #ffffff;
+  }
+
+  /* Background Arch Linux logo */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/6/6a/Archlinux-icon-crystal-64.svg') no-repeat center center;
+    background-size: contain;
+    opacity: 0.1;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: filter 0.5s, opacity 0.5s;
+    z-index: 0;
+    filter: brightness(0) invert(0); /* default for light mode */
+  }
+  body.dark-mode::before {
+    filter: brightness(1) invert(1); /* makes it light/white-ish in dark mode */
+    opacity: 0.08;
   }
 
   /* Header */
@@ -64,6 +88,8 @@
     min-height: 80vh;
     opacity: 0;
     transition: opacity 0.5s;
+    position: relative;
+    z-index: 1;
   }
   .page.active {
     display: block;
@@ -213,8 +239,6 @@
   function showPage(num) {
     pages.forEach((p, i) => p.classList.toggle('active', i === num - 1));
     navButtons.forEach((btn, i) => btn.classList.toggle('active', i === num - 1));
-
-    // Save last page
     localStorage.setItem('lastPage', num);
   }
 
